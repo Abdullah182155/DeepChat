@@ -4,8 +4,9 @@ import json
 from dotenv import load_dotenv
 
 load_dotenv()
+API_KEY = os.getenv("OPENROUTER_API_KEY") or st.secrets["OPENROUTER_API_KEY"]
 
-API_KEY = os.getenv("OPENROUTER_API_KEY") or os.getenv("OPENAI_API_KEY")
+#API_KEY = os.getenv("OPENROUTER_API_KEY") or os.getenv("OPENAI_API_KEY")
 if not API_KEY:
     raise ValueError("❌ Missing OPENROUTER_API_KEY (or OPENAI_API_KEY) in .env file")
 
