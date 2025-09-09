@@ -17,7 +17,7 @@ selection.
     -   `temperature`
     -   `top_p`
     -   `max_tokens`
-    -   `model` (choose between GPT-4o, GPT-4o-mini, GPT-3.5-turbo,
+    -   `model` (choose between deepseek/deepseek-chat-v3.1, openai/gpt-oss-120b, wen/qwen3-coder,
         etc.)\
 -   🎨 Clean UI with Streamlit's new `st.chat_message` and
     `st.chat_input`.
@@ -123,3 +123,6 @@ Change settings from the sidebar: - Increase creativity → raise
     chat.
 
 ------------------------------------------------------------------------
+
+## 🚀 Live Demo
+👉 [Try it on Streamlit Cloud](https://deepchat-abdullahemara.streamlit.app/)
