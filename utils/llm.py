@@ -1,25 +1,32 @@
 import os
-import requests
 import json
+import requests
+import streamlit as st
 from dotenv import load_dotenv
 
 load_dotenv()
-API_KEY = os.getenv("OPENROUTER_API_KEY") or st.secrets["OPENROUTER_API_KEY"]
-
-#API_KEY = os.getenv("OPENROUTER_API_KEY") or os.getenv("OPENAI_API_KEY")
+API_KEY = os.getenv("OPENAI_API_KEY") or st.secrets.get("OPENAI_API_KEY")
 if not API_KEY:
-    raise ValueError("❌ Missing OPENROUTER_API_KEY (or OPENAI_API_KEY) in .env file")
+    raise ValueError("❌ Missing OPENROUTER_API_KEY. Please set it in .env or Streamlit Secrets.")
 
 BASE_URL = "https://openrouter.ai/api/v1/chat/completions"
+
 
 def chat_with_openrouter(messages, model="deepseek/deepseek-chat-v3.1:free",
                          temperature=0.7, top_p=1, max_tokens=500, stream=False):
     """
     Call OpenRouter API with optional streaming.
+    Args:
+        messages (list): [{"role": "user", "content": "Hello"}]
+        model (str): model name
+        temperature (float): randomness
+        top_p (float): nucleus sampling
+        max_tokens (int): max tokens for response
+        stream (bool): enable streaming response
     """
     headers = {
         "Authorization": f"Bearer {API_KEY}",
-        "HTTP-Referer": "http://localhost:8501",  # optional
+        "HTTP-Referer": "http://localhost:8501",  # optional, useful for analytics
         "X-Title": "ChatGPT Clone App"
     }
 
